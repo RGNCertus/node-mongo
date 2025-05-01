@@ -1,18 +1,15 @@
-// Elementos del DOM
 const sala = document.getElementById("sala");
 const butacasSeleccionadas = document.getElementById("butacas");
 const butacasInput = document.getElementById("butacasInput");
 const continuarBtn = document.getElementById("continuarBtn");
 const reservaForm = document.getElementById("reservaForm");
 
-// Configuración de la sala
 const filas = 7;
 const columnas = 16;
 const columnasSilla = 3;
 
 let seleccionadas = [];
 
-// Crear la sala de butacas
 for (let i = 0; i < filas; i++) {
   const fila = document.createElement("div");
   fila.classList.add("fila");
@@ -21,7 +18,6 @@ for (let i = 0; i < filas; i++) {
     const asiento = document.createElement("div");
     asiento.classList.add("circle", "disponible");
 
-    // Marcar algunos asientos como ocupados (ejemplos)
     if ((i === 1 && j === 5) || (i === 2 && j === 4) || (i === 3 && j === 6)) {
       asiento.classList.remove("disponible");
       asiento.classList.add("ocupada");
@@ -29,7 +25,6 @@ for (let i = 0; i < filas; i++) {
 
     asiento.dataset.id = `${i}-${j}`;
 
-    // Evento click para seleccionar/deseleccionar butacas
     asiento.addEventListener("click", () => {
       if (asiento.classList.contains("ocupada")) return;
 
@@ -41,18 +36,15 @@ for (let i = 0; i < filas; i++) {
         seleccionadas.push(asiento.dataset.id);
       }
 
-      // Actualizar la visualización
       butacasSeleccionadas.textContent = seleccionadas.join(", ");
       butacasInput.value = seleccionadas.join(",");
-      
-      // Habilitar/deshabilitar botón
+
       continuarBtn.disabled = seleccionadas.length === 0;
     });
 
     fila.appendChild(asiento);
   }
 
-  // Agregar sillas de ruedas en las primeras filas
   if (i < 4) {
     for (let k = 0; k < columnasSilla; k++) {
       const silla = document.createElement("div");
@@ -65,7 +57,6 @@ for (let i = 0; i < filas; i++) {
   sala.appendChild(fila);
 }
 
-// Manejar envío del formulario
 reservaForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   
@@ -80,8 +71,7 @@ reservaForm.addEventListener("submit", async (e) => {
 
     if (response.ok) {
       alert(`Butacas guardadas: ${seleccionadas.join(', ')}`);
-      
-      // Resetear selección
+
       seleccionadas.forEach(id => {
         const asiento = document.querySelector(`[data-id="${id}"]`);
         if (asiento) {

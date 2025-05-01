@@ -3,18 +3,15 @@ const mongoose = require('mongoose');
 const Butaca = require('./models/Person');
 const app = express();
 
-// Configuración básica
 app.use(express.static('public'));
 app.use(express.json());
 
-// Conexión a MongoDB (REEMPLAZA CON TU URL)
 const MONGO_URI = "mongodb+srv://rodrigogrimaldo568:MondoDBfirstclass@cluster0.uyvdpqc.mongodb.net/";
 
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('🟢 Conectado a MongoDB'))
-  .catch(err => console.error('🔴 Error de conexión:', err));
+  .then(() => console.log('Conectado a MongoDB'))
+  .catch(err => console.error('Error de conexión:', err));
 
-// Ruta para guardar butacas
 app.post('/submit', async (req, res) => {
   try {
     if (!req.body.butacas || !Array.isArray(req.body.butacas)) {
@@ -45,8 +42,7 @@ app.post('/submit', async (req, res) => {
   }
 });
 
-// Iniciar servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🎥 Servidor Cineplanet en puerto ${PORT}`);
+  console.log(`Servidor Cineplanet en puerto ${PORT}`);
 });
