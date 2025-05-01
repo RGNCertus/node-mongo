@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selección de Butacas</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <aside class="sidebar">
-      <img src="cholos.png" alt="Poster" class="cliente" />
+      <img src="cholos.png" alt="Poster" class="cliente">
       <h2>CHOLOS EMPERICADOS 2</h2>
       <p>2D, REGULAR</p>
       <p>CP SJ LURIGANCHO</p>
@@ -41,32 +41,13 @@
       <p class="nota">Todas nuestras salas cuentan con espacios señalizados para sillas de ruedas.</p>
       <p><strong>Butacas Seleccionadas:</strong> <span id="butacas"></span></p>
 
-      <button disabled>Continuar</button>
+      <form id="reservaForm">
+        <input type="hidden" id="butacasInput" name="butacas">
+        <button type="submit" id="continuarBtn" disabled>Continuar</button>
+      </form>
     </main>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    const form = document.getElementById('form');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        const response = await fetch('/submit', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        });
-
-        if(response.ok){
-            alert("Formulario se envio con exito");
-            form.reset();
-        }else{
-            alert("Error al enviar");
-        }
-    });
-</script>
 </body>
 </html>
