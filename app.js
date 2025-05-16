@@ -6,7 +6,7 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 
-const MONGO_URI = "mongodb+srv://kesitoemprendedor777:MongoDBfirstclass@cluster0.vgrkahy.mongodb.net/";
+const MONGO_URI = "mongodb+srv://kesitoemprendedor777:MongoDBfirstclass@cluster0.vgrkahy.mongodb.net/certus/alumnos";
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('Conectado a MongoDB'))
