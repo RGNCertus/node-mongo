@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Butaca = require('./models/Person');
+const cors = require('cors');
+const Butaca = require('./backend/models/Person');
+const dotenv = require('dotenv');
 const app = express();
 
 app.use(express.static('public'));
